@@ -8,7 +8,7 @@ if (!$IsAdmin) {
         $ScriptPath = $MyInvocation.MyCommand.Definition
         Write-Host $PowerExecutable
         Write-Host $ScriptPath
-        Start-Process -FilePath $PowerExecutable -Verb 'runAs' -ArgumentList @('-File $ScriptPath')
+        Start-Process -FilePath $PowerExecutable -Verb 'runAs' -ArgumentList @("-File $ScriptPath")
     }
     exit
 }
@@ -44,6 +44,6 @@ foreach ($DomainRecord in $DomainRecords) {
 Write-Host "`nAdding following records to hosts file: `n"
 Write-Host ($HostsFileContentToAdd -join "`n")
 
-Add-Content -Path $HostsFile -Value $HostsFileContentToAdd
+Add-Content -Path $HostsFile -Value $HostsFileContentToAdd -ErrorAction Stop
 
 Read-Host -Prompt "Press any key to exit."
